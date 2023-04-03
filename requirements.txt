@@ -27,7 +27,7 @@ scipy==1.10.1
 seaborn==0.12.1
 six==1.16.0
 smmap==5.0.0
-torch==1.8.1+cu101
+torch==1.13.1
 torchaudio==0.8.1
 torchvision==0.9.1+cu101
 tqdm==4.64.1
