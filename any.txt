@@ -1,0 +1,47 @@
+docker run --device /dev/snd:/dev/snd your_image_name
+
+
+Traceback (most recent call last): File "anomaly_detection_with_alarm.py", line 118, in <module> main()
+  File "anomaly_detection_with_alarm.py", line 82, in main
+    sound_alarm()
+  File "anomaly_detection_with_alarm.py", line 10, in sound_alarm
+    p_object = w_object.play()
+  File "/usr/local/lib/python3.8/dist-packages/simpleaudio/shiny.py", line 19, in play
+    return play_buffer(self.audio_data, self.num_channels,
+  File "/usr/local/lib/python3.8/dist-packages/simpleaudio/shiny.py", line 60, in play_buffer
+    play_id = _sa._play_buffer(audio_data, num_channels, bytes_per_sample,
+_simpleaudio.SimpleaudioError: Error opening PCM device. -- CODE: -2 -- MSG: No such file or directory
+
+
+orin123@happymonk:/home/anomaly_alarm_detection$ nvidia-docker run --restart always -v /home/orin123/Desktop/url_file.txt:/home/orin123/Desktop/url_file.txt  -v /tmp/.X11-unix:/tmp/.X11-unix -v /usr/local/cuda:/usr/local/cuda -e DISPLAY=$DISPLAY anomaly_detect_alarm
+Traceback (most recent call last):
+  File "anomaly_detection_with_alarm.py", line 1, in <module>
+    import cv2
+  File "/usr/local/lib/python3.8/dist-packages/cv2/__init__.py", line 8, in <module>
+    from .cv2 import *
+orin123@happymonk:~/anomaly_alarm_detection1$ nvidia-docker run --restart always -v /home/orin123/Desktop/url_file.txt:/home/orin123/Desktop/url_file.txt -v /home/orin123/elephant_videos:/home/orin123/elephant_videos --name anomaly_detect_container3 --device /dev/snd:/dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix -v /usr/local/cuda:/usr/local/cuda --env PULSE_SERVER=unix:/tmp/pulseaudio.socket --env PULSE_COOKIE=/tmp/pulseaudio.cookie --ipc=host -e DISPLAY=$DISPLAY --privileged  anomaly_detect_alarmfiImportError: libavcodec-e61fde82.so.58.134.100: cannot open shared object file: No such file or directory
+
+
+
+docker run --rm \
+    --env PULSE_SERVER=unix:/tmp/pulseaudio.socket \
+    --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
+    --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
+    --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
+    --user $(id -u):$(id -g) \
+    imagename
+
+
+orin123@happymonk:~/anomaly_alarm_detection1$ nvidia-docker run --restart always -v /home/orin123/Desktop/url_file.txt:/home/orin123/Desktop/url_file.txt -v /home/orin123/elephant_videos:/home/orin123/elephant_videos --name anomaly_detect_container3 --device /dev/snd:/dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix -v /usr/local/cuda:/usr/local/cuda --env PULSE_SERVER=unix:/tmp/pulseaudio.socket --env PULSE_COOKIE=/tmp/pulseaudio.cookie --ipc=host -e DISPLAY=$DISPLAY --privileged  anomaly_detect_alarmfi
+nvidia-docker run -d --restart unless-stopped \
+  -v /home/orin123/Desktop/url_file.txt:/home/orin123/Desktop/url_file.txt \
+  -v /home/orin123/elephant_videos:/home/orin123/elephant_videos \
+  --name anomaly_detect_container3 \
+  --device /dev/snd:/dev/snd \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /usr/local/cuda:/usr/local/cuda \
+  --env PULSE_SERVER=unix:/tmp/pulseaudio.socket \
+  --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
+  --ipc=host -e DISPLAY=$DISPLAY \
+  --privileged \
+  anomaly_detect_alarmfi
