@@ -123,8 +123,8 @@ def main():
 
         for i in range(num_rows): 
             row = None
-            for j in range(num_cols): 
-                index = i * num_cols + j
+            for col in range(num_cols): 
+                index = i * num_cols + col
                 if index < len(processed_frames):
                     if row is None:
                         row = processed_frames[index]
